@@ -1,0 +1,35 @@
+$ ['make', '-j4', 'src.build', 'CUDA_HOME=/usr/local/cuda', 'NVCC_GENCODE=-gencode=arch=compute_89,code=sm_89']
+make -C src build BUILDDIR=/tmp/commnet-nccl-build/build
+make[1]: Entering directory '/tmp/commnet-nccl-build/src'
+NVCC_GENCODE is -gencode=arch=compute_89,code=sm_89
+make[2]: Entering directory '/tmp/commnet-nccl-build/src/device'
+make[2]: Entering directory '/tmp/commnet-nccl-build/src/diagnostics/device'
+NVCC_GENCODE is -gencode=arch=compute_89,code=sm_89
+NVCC_GENCODE is -gencode=arch=compute_89,code=sm_89
+make[2]: Leaving directory '/tmp/commnet-nccl-build/src/diagnostics/device'
+Updated  /tmp/commnet-nccl-build/build/obj/include/nccl_git_version.h
+make[2]: Leaving directory '/tmp/commnet-nccl-build/src/device'
+Compiling  misc/git_version.cc                 > /tmp/commnet-nccl-build/build/obj/misc/git_version.o
+Linking    libnccl.so.2.31.2                   > /tmp/commnet-nccl-build/build/lib/libnccl.so.2.31.2
+Archiving  libnccl_static.a                    > /tmp/commnet-nccl-build/build/lib/libnccl_static.a
+Linking    ncclparam                           > /tmp/commnet-nccl-build/build/bin/ncclparam
+make[1]: Leaving directory '/tmp/commnet-nccl-build/src'
+$ ['make', '-j4', 'CUDA_HOME=/usr/local/cuda', 'NCCL_HOME=/tmp/commnet-build-verified/nccl/build', 'NVCC_GENCODE=-gencode=arch=compute_89,code=sm_89']
+make -C src build BUILDDIR=/tmp/commnet-nccl-tests-build/build
+make[1]: Entering directory '/tmp/commnet-nccl-tests-build/src'
+make[2]: Entering directory '/tmp/commnet-nccl-tests-build/os'
+Compiling  util.cu                             > /tmp/commnet-nccl-tests-build/build/util.o
+make[2]: Leaving directory '/tmp/commnet-nccl-tests-build/os'
+Linking  /tmp/commnet-nccl-tests-build/build/all_reduce.o > /tmp/commnet-nccl-tests-build/build/all_reduce_perf
+Linking  /tmp/commnet-nccl-tests-build/build/all_gather.o > /tmp/commnet-nccl-tests-build/build/all_gather_perf
+Linking  /tmp/commnet-nccl-tests-build/build/broadcast.o > /tmp/commnet-nccl-tests-build/build/broadcast_perf
+Linking  /tmp/commnet-nccl-tests-build/build/reduce_scatter.o > /tmp/commnet-nccl-tests-build/build/reduce_scatter_perf
+Linking  /tmp/commnet-nccl-tests-build/build/reduce.o > /tmp/commnet-nccl-tests-build/build/reduce_perf
+Linking  /tmp/commnet-nccl-tests-build/build/alltoall.o > /tmp/commnet-nccl-tests-build/build/alltoall_perf
+Linking  /tmp/commnet-nccl-tests-build/build/alltoallv.o > /tmp/commnet-nccl-tests-build/build/alltoallv_perf
+Linking  /tmp/commnet-nccl-tests-build/build/scatter.o > /tmp/commnet-nccl-tests-build/build/scatter_perf
+Linking  /tmp/commnet-nccl-tests-build/build/gather.o > /tmp/commnet-nccl-tests-build/build/gather_perf
+Linking  /tmp/commnet-nccl-tests-build/build/sendrecv.o > /tmp/commnet-nccl-tests-build/build/sendrecv_perf
+Linking  /tmp/commnet-nccl-tests-build/build/hypercube.o > /tmp/commnet-nccl-tests-build/build/hypercube_perf
+make[1]: Leaving directory '/tmp/commnet-nccl-tests-build/src'
+$ ['/usr/local/cuda/bin/nvcc', '-std=c++17', '-O3', '-arch=sm_89', '<PROJECT_ROOT>/src/preflight.cu', '-o', '<PROJECT_ROOT>/build/preflight']

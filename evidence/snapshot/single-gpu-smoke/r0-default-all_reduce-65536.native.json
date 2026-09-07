@@ -1,0 +1,183 @@
+{
+  "version": 4,
+  "start_time": "2026-09-06 20:21:38",
+  "args": [
+    "/tmp/commnet-nccl-tests-build/build/all_reduce_perf",
+    "-b",
+    "65536",
+    "-e",
+    "65536",
+    "-g",
+    "1",
+    "-n",
+    "30",
+    "-w",
+    "5",
+    "-c",
+    "1",
+    "-I",
+    "1",
+    "-T",
+    "60",
+    "-J",
+    "<PROJECT_ROOT>/evidence/local/single-gpu-smoke/r0-default-all_reduce-65536.native.json",
+    "-R",
+    "0"
+  ],
+  "env": [
+    "PATH=<HOME>/.codex/packages/standalone/releases/0.153.4-x86_64-unknown-linux-musl/codex-path:<HOME>/.local/bin:<HOME>/.codex/tmp/arg0/codex-arg0FwS4gN:<HOME>/.codex/packages/standalone/releases/0.153.4-x86_64-unknown-linux-musl/codex-path:<HOME>/.local/share/mise/installs/buf/latest/buf/bin:<HOME>/.local/share/mise/installs/delta/latest/delta-0.19.2-x86_64-unknown-linux-musl:<HOME>/.local/share/mise/installs/go/1.26.8/bin:<HOME>/.local/share/mise/installs/golangci-lint/latest/golangci-lint-2.13.2-linux-amd64:<HOME>/.local/share/mise/installs/grpcurl/latest:<HOME>/.local/share/mise/installs/java/temurin-21/bin:<HOME>/.local/share/mise/installs/just/latest:<HOME>/.local/share/mise/installs/lazygit/latest:<HOME>/.local/share/mise/installs/maven/3.9/apache-maven-3.9.16/bin:<HOME>/.local/share/mise/installs/neovim/latest/bin:<HOME>/.local/share/mise/installs/node/24/bin:<HOME>/.local/share/mise/installs/npm-pnpm/latest/node_modules/.bin:<HOME>/.local/share/mise/installs/watchexec/latest/.mise-bins:<HOME>/.local/share/mise/installs/yq/latest:<HOME>/.local/share/mise/installs/protoc/latest/bin:<HOME>/.local/share/mise/installs/kubectl/latest:<HOME>/.local/share/mise/installs/helm/latest/linux-amd64:<HOME>/.local/share/mise/installs/kind/latest:<HOME>/.local/share/mise/installs/k9s/latest:<HOME>/.local/share/mise/installs/opentofu/latest:<HOME>/.local/share/mise/installs/actionlint/latest:<HOME>/.local/share/mise/installs/hadolint/latest:<HOME>/.local/share/mise/installs/trivy/latest:<HOME>/.local/share/mise/installs/k6/latest/k6-v2.2.0-linux-",
+    "CUDA_VISIBLE_DEVICES=0",
+    "NCCL_DEBUG=INFO",
+    "NCCL_DEBUG_SUBSYS=INIT,GRAPH,NET",
+    "LD_LIBRARY_PATH=/tmp/commnet-nccl-build/build/lib"
+  ],
+  "nccl_version": 23102,
+  "config": {
+    "nthreads": 1,
+    "ngpus": 1,
+    "minimum_bytes": 65536,
+    "maximum_bytes": 65536,
+    "step_bytes": 1048576,
+    "warmup_iters": 5,
+    "iterations": 30,
+    "aggregated_iterations": 1,
+    "validation": 1,
+    "graph": 0,
+    "blocking_collectives": "false",
+    "per_iter_timing": "true",
+    "per_iter_skip": 0,
+    "parallel_init": "false",
+    "devices": [
+      {
+        "rank": 0,
+        "group": 0,
+        "pid": 4019756,
+        "hostname": "<HOST>",
+        "device": 0,
+        "device_hex": "0000:01:00",
+        "device_info": "NVIDIA GeForce RTX 4090"
+      }
+    ]
+  },
+  "results": [
+    {
+      "size": 65536,
+      "count": 16384,
+      "type": "float",
+      "redop": "sum",
+      "root": "    -1",
+      "out_of_place": {
+        "time": 9.0759,
+        "alg_bw": 7.220882,
+        "bus_bw": 0.0,
+        "nwrong": 0.0
+      },
+      "out_of_place_per_iter": {
+        "skipped_iterations": 0,
+        "min_us": 2.048,
+        "max_us": 3.072,
+        "avg_us": 2.696533,
+        "p50_us": 3.072,
+        "p95_us": 3.072,
+        "p99_us": 3.072,
+        "stdev_us": 0.433198,
+        "cv_pct": 16.064999,
+        "times_us": [
+          3.072,
+          2.048,
+          3.072,
+          3.072,
+          3.072,
+          2.048,
+          3.072,
+          2.048,
+          3.072,
+          2.048,
+          3.072,
+          2.464,
+          2.656,
+          3.072,
+          2.432,
+          2.688,
+          3.072,
+          2.272,
+          2.848,
+          3.072,
+          2.24,
+          2.88,
+          3.072,
+          2.048,
+          3.072,
+          2.048,
+          3.072,
+          2.048,
+          3.072,
+          3.072
+        ]
+      },
+      "in_place": {
+        "time": 5.798633,
+        "alg_bw": 11.301973,
+        "bus_bw": 0.0,
+        "nwrong": 0.0
+      },
+      "in_place_per_iter": {
+        "skipped_iterations": 0,
+        "min_us": 1.024,
+        "max_us": 2.048,
+        "avg_us": 1.262933,
+        "p50_us": 1.024,
+        "p95_us": 2.048,
+        "p99_us": 2.048,
+        "stdev_us": 0.433103,
+        "cv_pct": 34.293453,
+        "times_us": [
+          1.024,
+          2.048,
+          1.024,
+          1.024,
+          1.024,
+          1.024,
+          2.048,
+          1.024,
+          1.024,
+          1.024,
+          1.024,
+          2.048,
+          1.024,
+          1.024,
+          1.024,
+          1.024,
+          2.048,
+          1.024,
+          1.024,
+          1.024,
+          1.024,
+          1.024,
+          2.048,
+          1.024,
+          1.024,
+          2.048,
+          1.024,
+          1.024,
+          2.048,
+          1.024
+        ]
+      },
+      "actual_iterations": 30,
+      "experiment_name": ""
+    }
+  ],
+  "out_of_bounds": {
+    "count": 0,
+    "okay": "true"
+  },
+  "average_bus_bandwidth": {
+    "bandwidth": 0.0,
+    "okay": "unchecked"
+  },
+  "errors": [
+    ""
+  ],
+  "end_time": "2026-09-06 20:21:39"
+}

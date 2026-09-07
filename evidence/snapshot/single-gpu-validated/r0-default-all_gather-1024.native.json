@@ -1,0 +1,183 @@
+{
+  "version": 4,
+  "start_time": "2026-09-06 20:23:43",
+  "args": [
+    "/tmp/commnet-nccl-tests-build/build/all_gather_perf",
+    "-b",
+    "1024",
+    "-e",
+    "1024",
+    "-g",
+    "1",
+    "-n",
+    "30",
+    "-w",
+    "5",
+    "-c",
+    "1",
+    "-I",
+    "1",
+    "-T",
+    "60",
+    "-J",
+    "<PROJECT_ROOT>/evidence/local/single-gpu-validated/r0-default-all_gather-1024.native.json",
+    "-R",
+    "0"
+  ],
+  "env": [
+    "PATH=/usr/local/cuda/bin:/usr/local/bin:/usr/bin:/bin",
+    "CUDA_VISIBLE_DEVICES=0",
+    "NCCL_DEBUG=INFO",
+    "NCCL_DEBUG_SUBSYS=INIT,GRAPH,NET",
+    "LD_LIBRARY_PATH=/tmp/commnet-nccl-build/build/lib"
+  ],
+  "nccl_version": 23102,
+  "config": {
+    "nthreads": 1,
+    "ngpus": 1,
+    "minimum_bytes": 1024,
+    "maximum_bytes": 1024,
+    "step_bytes": 1048576,
+    "warmup_iters": 5,
+    "iterations": 30,
+    "aggregated_iterations": 1,
+    "validation": 1,
+    "graph": 0,
+    "blocking_collectives": "false",
+    "per_iter_timing": "true",
+    "per_iter_skip": 0,
+    "parallel_init": "false",
+    "devices": [
+      {
+        "rank": 0,
+        "group": 0,
+        "pid": 4049946,
+        "hostname": "<HOST>",
+        "device": 0,
+        "device_hex": "0000:01:00",
+        "device_info": "NVIDIA GeForce RTX 4090"
+      }
+    ]
+  },
+  "results": [
+    {
+      "size": 1024,
+      "count": 256,
+      "type": "float",
+      "redop": "none",
+      "root": "    -1",
+      "out_of_place": {
+        "time": 7.091533,
+        "alg_bw": 0.144398,
+        "bus_bw": 0.0,
+        "nwrong": 0.0
+      },
+      "out_of_place_per_iter": {
+        "skipped_iterations": 0,
+        "min_us": 2.048,
+        "max_us": 130.048007,
+        "avg_us": 6.8736,
+        "p50_us": 2.88,
+        "p95_us": 3.232,
+        "p99_us": 130.048007,
+        "stdev_us": 22.877212,
+        "cv_pct": 332.827208,
+        "times_us": [
+          3.232,
+          2.912,
+          2.112,
+          3.008,
+          2.048,
+          3.072,
+          130.048007,
+          3.072,
+          2.048,
+          3.072,
+          2.048,
+          3.072,
+          3.072,
+          2.08,
+          3.04,
+          2.048,
+          3.072,
+          2.048,
+          3.072,
+          2.048,
+          3.072,
+          2.24,
+          2.88,
+          2.336,
+          2.784,
+          2.048,
+          3.072,
+          2.368,
+          2.752,
+          2.432
+        ]
+      },
+      "in_place": {
+        "time": 5.263133,
+        "alg_bw": 0.194561,
+        "bus_bw": 0.0,
+        "nwrong": 0.0
+      },
+      "in_place_per_iter": {
+        "skipped_iterations": 0,
+        "min_us": 1.024,
+        "max_us": 2.048,
+        "avg_us": 1.3312,
+        "p50_us": 1.024,
+        "p95_us": 2.048,
+        "p99_us": 2.048,
+        "stdev_us": 0.469256,
+        "cv_pct": 35.250582,
+        "times_us": [
+          1.024,
+          1.024,
+          1.024,
+          2.048,
+          1.024,
+          1.024,
+          2.048,
+          1.024,
+          1.024,
+          2.048,
+          1.024,
+          1.024,
+          1.024,
+          2.048,
+          1.024,
+          2.048,
+          1.024,
+          1.024,
+          1.024,
+          2.048,
+          1.024,
+          1.024,
+          2.048,
+          1.024,
+          2.048,
+          1.024,
+          1.024,
+          1.024,
+          1.024,
+          2.048
+        ]
+      },
+      "actual_iterations": 30,
+      "experiment_name": ""
+    }
+  ],
+  "out_of_bounds": {
+    "count": 0,
+    "okay": "true"
+  },
+  "average_bus_bandwidth": {
+    "bandwidth": 0.0,
+    "okay": "unchecked"
+  },
+  "errors": [
+    ""
+  ],
+  "end_time": "2026-09-06 20:23:44"
+}

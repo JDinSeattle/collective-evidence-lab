@@ -1,0 +1,5 @@
+{
+  "status": "invalid_evidence",
+  "scope": "single_gpu_smoke",
+  "qualification": false
+}

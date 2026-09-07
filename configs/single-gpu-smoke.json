@@ -1,0 +1,22 @@
+{
+  "devices": [
+    0
+  ],
+  "sizes": [
+    16,
+    1024,
+    65536,
+    1048576,
+    16777216
+  ],
+  "iterations": 30,
+  "warmup": 5,
+  "repeats": 3,
+  "timeout_s": 60,
+  "cases": [
+    {
+      "name": "default",
+      "env": {}
+    }
+  ]
+}

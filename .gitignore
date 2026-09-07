@@ -1,0 +1,9 @@
+build/
+.deps/
+__pycache__/
+*.pyc
+evidence/local/
+*.nsys-rep
+*.sqlite
+*.so
+*.a

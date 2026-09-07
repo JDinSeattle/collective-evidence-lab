@@ -1,0 +1,10 @@
+{
+  "nccl-tests": {
+    "repository": "https://github.com/NVIDIA/nccl-tests",
+    "revision": "b4d5beebca8a76cf01335f724d154b9b9d394d96"
+  },
+  "nccl": {
+    "repository": "https://github.com/NVIDIA/nccl",
+    "revision": "fd168324a3dc0c9080fd4881b6c7f4bb252a95a2"
+  }
+}
