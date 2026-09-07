@@ -1,0 +1,85 @@
+{
+  "timestamp_utc": "2026-09-07T22:34:40.339672+00:00",
+  "scope": "local_cpu_and_single_real_gpu",
+  "python": "3.14.4 (main, Jun 18 2026, 14:25:02) [GCC 15.2.0]",
+  "os": "Linux-7.0.0-29-generic-x86_64-with-glibc2.43",
+  "checks": [
+    {
+      "name": "tests",
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "returncode": 0
+    },
+    {
+      "name": "historical-replay",
+      "command": [
+        "python3",
+        "audit.py",
+        "evidence/snapshot/final-single-gpu"
+      ],
+      "returncode": 0
+    },
+    {
+      "name": "fresh-replay",
+      "command": [
+        "python3",
+        "audit.py",
+        "<PROJECT_ROOT>/evidence/local/maintenance-20260907/single-gpu"
+      ],
+      "returncode": 0
+    },
+    {
+      "name": "hardware-gate",
+      "command": [
+        "python3",
+        "lab.py",
+        "run",
+        "--config",
+        "configs/two-gpu.json",
+        "--bin-dir",
+        "/tmp/commnet-nccl-tests-build/build",
+        "--library-dir",
+        "/tmp/commnet-nccl-build/build/lib",
+        "--preflight",
+        "build/preflight",
+        "--out",
+        "<PROJECT_ROOT>/evidence/local/maintenance-20260907/hardware-gate"
+      ],
+      "returncode": 2
+    }
+  ],
+  "source_sha256": {
+    "lab.py": "35178c7b92c25498b4fc4378d9baf7a8e01689d1e68d6156ffdfd58c75026f40",
+    "audit.py": "2f12a57f79170beca0911aede2e542cfcec17c14e9601d7e91abe93944ffedc0",
+    "src/preflight.cu": "07454fbffd84b72d86d598b3af51874eef809e7beab7f895cbb565303d839f8f"
+  },
+  "fresh_process_runs": 30,
+  "performance_claim": null,
+  "two_gpu_qualified": false,
+  "final_cpu_verification": {
+    "command": [
+      "python3",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests",
+      "-v"
+    ],
+    "returncode": 0,
+    "timestamp_utc": "2026-09-07T22:39:34.517791+00:00",
+    "source_sha256": {
+      "lab.py": "1dced72a877e1e600a4ba7676e3aa30bf3d1293d29a005ece83c16fec8cf8a37",
+      "audit.py": "2f12a57f79170beca0911aede2e542cfcec17c14e9601d7e91abe93944ffedc0",
+      "src/preflight.cu": "07454fbffd84b72d86d598b3af51874eef809e7beab7f895cbb565303d839f8f"
+    },
+    "note": "Later changes only refine admission/configuration validation; GPU source is unchanged. Native execution source snapshot is retained above."
+  }
+}

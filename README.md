@@ -4,6 +4,8 @@ A reproducible qualification harness around **NVIDIA nccl-tests**, built to answ
 
 **Status:** CPU harness tests and real RTX 4090 single-GPU checks passed. **Two-GPU qualification is pending.** No inter-GPU bandwidth or multi-node claim is made.
 
+The [September maintenance review](docs/MAINTENANCE_2026-09-07.md) adds strict request/native-result admission and GPU-free replay. [Hiring and upstream research](docs/MARKET_REVIEW_2026-09-07.md) explains the scope.
+
 ## What is implemented
 
 - Pinned NCCL/nccl-tests builds; no replacement collective implementation.
@@ -19,7 +21,7 @@ A reproducible qualification harness around **NVIDIA nccl-tests**, built to answ
 
 | Evidence | Result |
 |---|---|
-| Python regression suite | 11 tests passed, including real subprocess exit/timeout/descendant cleanup |
+| Python regression suite | 19 tests passed, including real subprocess exit/timeout/descendant cleanup |
 | Native collective smoke | 30 process runs: 2 operations × 5 sizes × 3 repeats; both placements; correctness passed |
 | Single-GPU memory preflight | 128 MiB CUDA copy and full-element validation passed |
 | Two-GPU gate on one-GPU host | Explicit `blocked_preflight`, exit 2 |
@@ -33,6 +35,7 @@ Python 3.10+, Git, Make, a C++ compiler and a CUDA toolkit are required. The rec
 
 ```bash
 python3 -m unittest discover -s tests -v
+python3 audit.py evidence/snapshot/final-single-gpu
 python3 scripts/build.py --arch 89
 ```
 

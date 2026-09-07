@@ -124,6 +124,80 @@ def normalize(payload, op, ranks):
     return rows
 
 
+def validate_contract(payload, op, ranks, expected):
+    """Admit only the pinned JSON-v4, single-process float experiment requested.
+
+    This is an execution contract, not authentication of an untrusted producer.
+    Normalize remains available for exploratory data; sweeps use this gate first.
+    """
+    def same(actual, wanted, label):
+        if type(actual) is not type(wanted) or actual != wanted:
+            raise ValueError("native/request mismatch: " + label)
+
+    if not isinstance(payload, dict):
+        raise ValueError("native payload must be an object")
+    same(payload.get("version"), 4, "JSON version")
+    same(payload.get("args"), expected["command"], "argv")
+    if Path(expected["command"][0]).name != OPS[op]:
+        raise ValueError("collective executable mismatch")
+    config = payload.get("config")
+    if not isinstance(config, dict):
+        raise ValueError("missing native config")
+    for key, value in {"nthreads": 1, "ngpus": ranks, "minimum_bytes": expected["size"],
+                       "maximum_bytes": expected["size"], "iterations": expected["iterations"],
+                       "warmup_iters": expected["warmup"], "aggregated_iterations": 1,
+                       "validation": 1, "graph": 0, "per_iter_timing": "true", "per_iter_skip": 0}.items():
+        same(config.get(key), value, key)
+    devices = config.get("devices")
+    if not isinstance(devices, list) or len(devices) != ranks:
+        raise ValueError("incomplete device mapping")
+    for rank, device in enumerate(devices):
+        if not isinstance(device, dict):
+            raise ValueError("invalid device mapping")
+        same(device.get("rank"), rank, "rank")
+        # CUDA_VISIBLE_DEVICES remaps physical indices to contiguous logical indices.
+        same(device.get("device"), rank, "logical device")
+    env = payload.get("env")
+    if not isinstance(env, list) or any(not isinstance(e, str) or "=" not in e for e in env):
+        raise ValueError("invalid environment record")
+    pairs = [e.split("=", 1) for e in env]
+    if len(dict(pairs)) != len(pairs):
+        raise ValueError("duplicate environment record")
+    if expected.get("environment") is not None:
+        same(dict(pairs), expected["environment"], "environment")
+    else:
+        same(dict(pairs).get("CUDA_VISIBLE_DEVICES"), ",".join(map(str, expected["devices"])), "device order")
+    errors = payload.get("errors")
+    if not isinstance(errors, list) or any(not isinstance(e, str) or e.strip() for e in errors):
+        raise ValueError("native error diagnostics")
+    bounds = payload.get("out_of_bounds")
+    if not isinstance(bounds, dict):
+        raise ValueError("missing aggregate correctness")
+    if type(bounds.get("count")) is not int or bounds["count"] < 0:
+        raise ValueError("invalid aggregate error count")
+    same(bounds.get("okay"), "true" if bounds["count"] == 0 else "false", "aggregate correctness")
+    results = payload.get("results")
+    if not isinstance(results, list) or len(results) != 1 or not isinstance(results[0], dict):
+        raise ValueError("expected exactly one result per invocation")
+    row = results[0]
+    for key, value in {"size": expected["size"], "type": "float",
+                       "redop": "sum" if op == "all_reduce" else "none",
+                       "count": expected["size"] // (4 * (ranks if op == "all_gather" else 1)),
+                       "actual_iterations": expected["iterations"]}.items():
+        same(row.get(key), value, key)
+    for placement in ("in_place", "out_of_place"):
+        timing = row.get(placement + "_per_iter")
+        if not isinstance(timing, dict):
+            raise ValueError("missing per-iteration timing")
+        same(timing.get("skipped_iterations"), 0, "skipped iterations")
+        samples = timing.get("times_us")
+        if not isinstance(samples, list) or len(samples) != expected["iterations"]:
+            raise ValueError("missing iteration samples")
+        if any(type(x) not in (int, float) or not math.isfinite(x) or x <= 0 for x in samples):
+            raise ValueError("invalid iteration timing")
+    return normalize(payload, op, ranks)
+
+
 def classify(proc, rows=None, parse_error=None):
     if proc.get("timeout"):
         return "timeout"
@@ -163,6 +237,8 @@ def validate_config(c):
             raise ValueError(f"invalid {key}")
     if not c["sizes"] or any(type(x) is not int or x < 16 * len(devices) or x % (16 * len(devices)) or x > 1024**3 for x in c["sizes"]):
         raise ValueError("sizes must be multiples of 16 * ranks, at most 1 GiB (all-gather rounds down per-rank payloads)")
+    if len(set(c["sizes"])) != len(c["sizes"]):
+        raise ValueError("duplicate sizes would overwrite experiment evidence")
     cases = c["cases"]
     if not cases or cases[0] != {"name": "default", "env": {}}:
         raise ValueError("first case must be an unchanged default baseline")
@@ -230,13 +306,15 @@ def run_sweep(args):
                            "-n", str(config["iterations"]), "-w", str(config["warmup"]), "-c", "1",
                            "-I", "1", "-T", str(config["timeout_s"]), "-J", str(native),
                            "-R", str(case.get("registration", 0))]
+                    expected = {"command": list(cmd), "environment": env, "devices": selected,
+                                "size": size, "iterations": config["iterations"], "warmup": config["warmup"]}
                     if "cpu_affinity" in case:
                         cmd = ["taskset", "-c", ",".join(map(str, case["cpu_affinity"]))] + cmd
                     proc = execute(cmd, timeout=config["timeout_s"] + 5, env=env)
                     save(out / (tag + ".process.json"), proc)
                     rows, error = [], None
                     try:
-                        rows = normalize(json.loads(native.read_text()), op, len(devices))
+                        rows = validate_contract(json.loads(native.read_text()), op, len(devices), expected)
                     except (OSError, ValueError, KeyError, TypeError) as e:
                         error = str(e)
                     status = classify(proc, rows, error)

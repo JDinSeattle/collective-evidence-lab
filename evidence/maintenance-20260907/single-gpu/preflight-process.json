@@ -1,0 +1,11 @@
+{
+  "command": [
+    "<PROJECT_ROOT>/build/preflight"
+  ],
+  "returncode": 0,
+  "timeout": false,
+  "launch_error": null,
+  "stdout": "{\"device_count\":1,\"driver\":13020,\"runtime\":13020,\"bytes\":134217728,\"warmup\":5,\"iterations\":20,\"devices\":[{\"id\":0,\"name\":\"NVIDIA GeForce RTX 4090\",\"sm_count\":128,\"memory_bytes\":25249579008,\"d2d_payload_GBs\":343.675688}],\"peer_links\":[],\"correctness\":\"pass\"}\n",
+  "stderr": "",
+  "elapsed_s": 0.4705798900104128
+}

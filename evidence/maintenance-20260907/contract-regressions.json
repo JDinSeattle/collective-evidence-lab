@@ -1,0 +1,49 @@
+{
+  "scope": "CPU mutations of archived real GPU JSON; no induced GPU/network faults",
+  "baseline_commit": "3fcafdf13a889774bb2a1093ba770dd3e25aa999",
+  "cases": [
+    {
+      "case": "wrong_dtype",
+      "baseline_status": "pass",
+      "current_status": "invalid_evidence",
+      "reason": "native/request mismatch: type"
+    },
+    {
+      "case": "wrong_reduction",
+      "baseline_status": "pass",
+      "current_status": "invalid_evidence",
+      "reason": "native/request mismatch: redop"
+    },
+    {
+      "case": "wrong_warmup",
+      "baseline_status": "pass",
+      "current_status": "invalid_evidence",
+      "reason": "native/request mismatch: warmup_iters"
+    },
+    {
+      "case": "missing_iteration_data",
+      "baseline_status": "pass",
+      "current_status": "invalid_evidence",
+      "reason": "missing per-iteration timing"
+    },
+    {
+      "case": "missing_aggregate_correctness",
+      "baseline_status": "pass",
+      "current_status": "invalid_evidence",
+      "reason": "missing aggregate correctness"
+    },
+    {
+      "case": "duplicate_result",
+      "baseline_status": "pass",
+      "current_status": "invalid_evidence",
+      "reason": "expected exactly one result per invocation"
+    },
+    {
+      "case": "wrong_executable",
+      "baseline_status": "pass",
+      "current_status": "invalid_evidence",
+      "reason": "native/request mismatch: argv"
+    }
+  ],
+  "performance_claim": null
+}

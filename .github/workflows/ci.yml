@@ -14,3 +14,7 @@ jobs:
         run: python3 -m unittest discover -s tests -v
       - name: Verify published evidence receipts
         run: python3 scripts/export_evidence.py --verify evidence/snapshot
+      - name: Verify maintenance evidence and replay actual GPU outputs offline
+        run: |
+          python3 scripts/export_evidence.py --verify evidence/maintenance-20260907
+          python3 audit.py evidence/maintenance-20260907/single-gpu

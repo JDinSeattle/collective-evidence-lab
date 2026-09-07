@@ -1,0 +1,8 @@
+{
+  "status": "pass",
+  "process_runs": 30,
+  "placements": 60,
+  "scope": "single_gpu_smoke",
+  "qualification": false,
+  "note": "Replay of saved execution data; not a fresh GPU run or source authentication."
+}

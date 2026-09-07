@@ -91,6 +91,8 @@ class EvidenceTests(unittest.TestCase):
         with self.assertRaises(ValueError):lab.validate_config(c)
         c["cases"].pop();c["sizes"][0]=8
         with self.assertRaises(ValueError):lab.validate_config(c)
+        c=json.loads((lab.ROOT/"configs/two-gpu.json").read_text());c["sizes"].append(c["sizes"][0])
+        with self.assertRaises(ValueError):lab.validate_config(c)
 
     def test_repeat_statistics_are_not_rank_percentiles(self):
         rows=lab.normalize(fixture(),"all_reduce",2)

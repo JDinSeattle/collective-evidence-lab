@@ -1,0 +1,230 @@
+{
+  "status": "pass",
+  "scope": "single_gpu_smoke",
+  "qualification": false,
+  "collective_sweep_verified": false,
+  "remaining": "two-GPU hypothesis and fault experiments require review before qualification",
+  "statistics": [
+    {
+      "case": "default",
+      "op": "all_gather",
+      "size_bytes": 16,
+      "placement": "in_place",
+      "repeats": 3,
+      "median_run_mean_us": 1.355967,
+      "p95_run_mean_us": 6.6465,
+      "min_run_mean_us": 1.349833,
+      "max_run_mean_us": 6.6465
+    },
+    {
+      "case": "default",
+      "op": "all_gather",
+      "size_bytes": 16,
+      "placement": "out_of_place",
+      "repeats": 3,
+      "median_run_mean_us": 2.849233,
+      "p95_run_mean_us": 6.951233,
+      "min_run_mean_us": 2.7521,
+      "max_run_mean_us": 6.951233
+    },
+    {
+      "case": "default",
+      "op": "all_gather",
+      "size_bytes": 1024,
+      "placement": "in_place",
+      "repeats": 3,
+      "median_run_mean_us": 7.621433,
+      "p95_run_mean_us": 10.499267,
+      "min_run_mean_us": 1.364833,
+      "max_run_mean_us": 10.499267
+    },
+    {
+      "case": "default",
+      "op": "all_gather",
+      "size_bytes": 1024,
+      "placement": "out_of_place",
+      "repeats": 3,
+      "median_run_mean_us": 2.944667,
+      "p95_run_mean_us": 7.6551,
+      "min_run_mean_us": 2.920467,
+      "max_run_mean_us": 7.6551
+    },
+    {
+      "case": "default",
+      "op": "all_gather",
+      "size_bytes": 65536,
+      "placement": "in_place",
+      "repeats": 3,
+      "median_run_mean_us": 9.0057,
+      "p95_run_mean_us": 18.846467,
+      "min_run_mean_us": 1.355367,
+      "max_run_mean_us": 18.846467
+    },
+    {
+      "case": "default",
+      "op": "all_gather",
+      "size_bytes": 65536,
+      "placement": "out_of_place",
+      "repeats": 3,
+      "median_run_mean_us": 2.979333,
+      "p95_run_mean_us": 7.9972,
+      "min_run_mean_us": 2.961467,
+      "max_run_mean_us": 7.9972
+    },
+    {
+      "case": "default",
+      "op": "all_gather",
+      "size_bytes": 1048576,
+      "placement": "in_place",
+      "repeats": 3,
+      "median_run_mean_us": 12.472967,
+      "p95_run_mean_us": 12.684667,
+      "min_run_mean_us": 9.205033,
+      "max_run_mean_us": 12.684667
+    },
+    {
+      "case": "default",
+      "op": "all_gather",
+      "size_bytes": 1048576,
+      "placement": "out_of_place",
+      "repeats": 3,
+      "median_run_mean_us": 3.302967,
+      "p95_run_mean_us": 3.354433,
+      "min_run_mean_us": 3.272467,
+      "max_run_mean_us": 3.354433
+    },
+    {
+      "case": "default",
+      "op": "all_gather",
+      "size_bytes": 16777216,
+      "placement": "in_place",
+      "repeats": 3,
+      "median_run_mean_us": 6.406767,
+      "p95_run_mean_us": 8.795133,
+      "min_run_mean_us": 1.3941,
+      "max_run_mean_us": 8.795133
+    },
+    {
+      "case": "default",
+      "op": "all_gather",
+      "size_bytes": 16777216,
+      "placement": "out_of_place",
+      "repeats": 3,
+      "median_run_mean_us": 16.786867,
+      "p95_run_mean_us": 24.556133,
+      "min_run_mean_us": 11.136867,
+      "max_run_mean_us": 24.556133
+    },
+    {
+      "case": "default",
+      "op": "all_reduce",
+      "size_bytes": 16,
+      "placement": "in_place",
+      "repeats": 3,
+      "median_run_mean_us": 6.9057,
+      "p95_run_mean_us": 7.972633,
+      "min_run_mean_us": 6.356,
+      "max_run_mean_us": 7.972633
+    },
+    {
+      "case": "default",
+      "op": "all_reduce",
+      "size_bytes": 16,
+      "placement": "out_of_place",
+      "repeats": 3,
+      "median_run_mean_us": 3.124233,
+      "p95_run_mean_us": 10.1489,
+      "min_run_mean_us": 2.928967,
+      "max_run_mean_us": 10.1489
+    },
+    {
+      "case": "default",
+      "op": "all_reduce",
+      "size_bytes": 1024,
+      "placement": "in_place",
+      "repeats": 3,
+      "median_run_mean_us": 6.553867,
+      "p95_run_mean_us": 6.690333,
+      "min_run_mean_us": 1.364167,
+      "max_run_mean_us": 6.690333
+    },
+    {
+      "case": "default",
+      "op": "all_reduce",
+      "size_bytes": 1024,
+      "placement": "out_of_place",
+      "repeats": 3,
+      "median_run_mean_us": 2.9318,
+      "p95_run_mean_us": 8.011233,
+      "min_run_mean_us": 2.9192,
+      "max_run_mean_us": 8.011233
+    },
+    {
+      "case": "default",
+      "op": "all_reduce",
+      "size_bytes": 65536,
+      "placement": "in_place",
+      "repeats": 3,
+      "median_run_mean_us": 1.3977,
+      "p95_run_mean_us": 8.425967,
+      "min_run_mean_us": 1.3733,
+      "max_run_mean_us": 8.425967
+    },
+    {
+      "case": "default",
+      "op": "all_reduce",
+      "size_bytes": 65536,
+      "placement": "out_of_place",
+      "repeats": 3,
+      "median_run_mean_us": 2.959667,
+      "p95_run_mean_us": 7.1746,
+      "min_run_mean_us": 2.948567,
+      "max_run_mean_us": 7.1746
+    },
+    {
+      "case": "default",
+      "op": "all_reduce",
+      "size_bytes": 1048576,
+      "placement": "in_place",
+      "repeats": 3,
+      "median_run_mean_us": 1.445333,
+      "p95_run_mean_us": 7.951267,
+      "min_run_mean_us": 1.410233,
+      "max_run_mean_us": 7.951267
+    },
+    {
+      "case": "default",
+      "op": "all_reduce",
+      "size_bytes": 1048576,
+      "placement": "out_of_place",
+      "repeats": 3,
+      "median_run_mean_us": 3.3112,
+      "p95_run_mean_us": 5.537233,
+      "min_run_mean_us": 3.289267,
+      "max_run_mean_us": 5.537233
+    },
+    {
+      "case": "default",
+      "op": "all_reduce",
+      "size_bytes": 16777216,
+      "placement": "in_place",
+      "repeats": 3,
+      "median_run_mean_us": 8.206767,
+      "p95_run_mean_us": 20.380533,
+      "min_run_mean_us": 1.405533,
+      "max_run_mean_us": 20.380533
+    },
+    {
+      "case": "default",
+      "op": "all_reduce",
+      "size_bytes": 16777216,
+      "placement": "out_of_place",
+      "repeats": 3,
+      "median_run_mean_us": 11.156733,
+      "p95_run_mean_us": 19.551933,
+      "min_run_mean_us": 10.952567,
+      "max_run_mean_us": 19.551933
+    }
+  ],
+  "metric_note": "bus_bw is an operation normalization, not per-link telemetry; times are us"
+}

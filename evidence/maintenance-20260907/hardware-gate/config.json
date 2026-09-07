@@ -1,0 +1,34 @@
+{
+  "devices": [
+    0,
+    1
+  ],
+  "sizes": [
+    32,
+    1024,
+    65536,
+    1048576,
+    16777216,
+    134217728
+  ],
+  "iterations": 100,
+  "warmup": 20,
+  "repeats": 5,
+  "timeout_s": 60,
+  "cases": [
+    {
+      "name": "default",
+      "env": {}
+    },
+    {
+      "name": "reverse-ranks",
+      "env": {},
+      "reverse_devices": true
+    },
+    {
+      "name": "registered",
+      "env": {},
+      "registration": 1
+    }
+  ]
+}

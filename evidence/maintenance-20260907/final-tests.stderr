@@ -1,0 +1,24 @@
+test_argv_and_physical_logical_mapping (test_contract.ContractTests.test_argv_and_physical_logical_mapping) ... ok
+test_collective_type_count_and_cardinality (test_contract.ContractTests.test_collective_type_count_and_cardinality) ... ok
+test_missing_or_boolean_iteration_samples (test_contract.ContractTests.test_missing_or_boolean_iteration_samples) ... ok
+test_replay_detects_missing_runs_and_modified_summary (test_contract.ContractTests.test_replay_detects_missing_runs_and_modified_summary) ... ok
+test_replay_real_completed_sweep (test_contract.ContractTests.test_replay_real_completed_sweep) ... ok
+test_requested_size_cannot_accept_other_valid_measurement (test_contract.ContractTests.test_requested_size_cannot_accept_other_valid_measurement) ... ok
+test_schema_and_execution_configuration (test_contract.ContractTests.test_schema_and_execution_configuration) ... ok
+test_unknown_correctness_and_error_diagnostics (test_contract.ContractTests.test_unknown_correctness_and_error_diagnostics) ... ok
+test_bandwidth_semantics (test_lab.EvidenceTests.test_bandwidth_semantics) ... ok
+test_error_classification (test_lab.EvidenceTests.test_error_classification) ... ok
+test_incomplete_iteration_array (test_lab.EvidenceTests.test_incomplete_iteration_array) ... ok
+test_one_factor_and_noop_guard (test_lab.EvidenceTests.test_one_factor_and_noop_guard) ... ok
+test_real_exit_and_timeout (test_lab.EvidenceTests.test_real_exit_and_timeout) ... ok
+test_reject_disabled_validation_and_empty_data (test_lab.EvidenceTests.test_reject_disabled_validation_and_empty_data) ... ok
+test_reject_unit_or_factor_mismatch (test_lab.EvidenceTests.test_reject_unit_or_factor_mismatch) ... ok
+test_reject_unknown_correctness (test_lab.EvidenceTests.test_reject_unknown_correctness) ... ok
+test_repeat_statistics_are_not_rank_percentiles (test_lab.EvidenceTests.test_repeat_statistics_are_not_rank_percentiles) ... ok
+test_terminate_grandchild_group (test_lab.EvidenceTests.test_terminate_grandchild_group) ... ok
+test_truncated_run_and_rank_mapping (test_lab.EvidenceTests.test_truncated_run_and_rank_mapping) ... ok
+
+----------------------------------------------------------------------
+Ran 19 tests in 1.326s
+
+OK
